@@ -1,26 +1,27 @@
 import { useState } from 'react'
 import './App.css'
-import countriesJSON from './countries.json'
-
-import NavBar from './components/NavBar'
+import countries from './countries.json'
+//components imported from
+import Navbar from './components/Navbar'
 import CountriesList from './components/CountriesList'
-import { Routes, Route } from "react-router-dom";
-
+import CountryDetails from './components/CountryDetails'
+import { Route, Routes } from 'react-router-dom'
+//Pages imported from 
 
 
 function App() {
-  const [countries, setCountries] = useState(countriesJSON)
+  
+  const [countriesArray, setCountriesArray] = useState(countries)
+  
+  return <div className='App'>
+    <Navbar />
+    <CountriesList countries={countriesArray}/>
 
+    <Routes>
+      <Route path='/country/:alpha3Code' element = {<CountryDetails countries={countriesArray}/>} />  
+    </Routes>
+    
 
-  return (
-    <div className="App">
-
-    <NavBar />
-
-    <CountriesList countries={countries} />
-
-    </div>
-  )
+  </div>
 }
-
 export default App
